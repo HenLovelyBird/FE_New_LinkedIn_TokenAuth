@@ -1,0 +1,30 @@
+#bg-cover{
+    background-image: url("https://miro.medium.com/max/1124/1*92adf06PCF91kCYu1nPLQg.jpeg"); 
+    background-size: cover;
+    color: white;
+    margin-top: 3em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 0;
+
+}
+
+/* #greeting{
+    margin-left: 5px
+} */
+
+#profpic {
+    border-radius: 50%;
+    position: absolute;
+    margin-left: 40px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Get Profile Info: */
+#profcontainer {
+    border: .5px solid black;
+    border-top: 0;
+    margin-left: 32px;
+    margin-right: 0;
+}

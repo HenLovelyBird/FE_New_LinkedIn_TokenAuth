@@ -1,0 +1,18 @@
+/* LoginPage */
+.login-container {
+    margin-top: 100px;
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(48, 47, 47, 0.51); 
+    box-shadow: 0px 0px 3px 1px rgba(78, 78, 78, 0.51);
+}
+
+#submit-btn {
+    background-color: #233e4c;
+    margin-bottom: 2em;
+    margin-top: .5em;
+    margin-left: 1em;
+}
+
+/* LoginTranslator */
+#cl-btn {
+    color: rgb(0, 8, 255);
+}
