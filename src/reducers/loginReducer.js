@@ -13,6 +13,7 @@ export default (state = {}, action) => {
           currentUser: "",
           currentPassword: ""
         };
+      case "SET_ACCESS_TOKEN":return{...state, token: action.payload}
   
       default:
         return state;

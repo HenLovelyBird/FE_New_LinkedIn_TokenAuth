@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from 'reactstrap'
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
+// import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import './App.css';
-import Loginpage from './Pages/Login/LoginIndex.jsx'
+import LoginIndex from './Pages/Login/LoginIndex.jsx'
 // import Profile from './Pages/Profile/ProfileIndex'
 // import Registrationomponent from "./Pages/Registration/RegistrationIndex"
 // import PrivateRoute from "./PrivateRoute"
@@ -21,7 +21,7 @@ function App() {
   return (
     <Container>
       <h1> Welcome! Ready to login or register!</h1>
-      <Loginpage />
+      <LoginIndex />
     </Container>
   );
 }          

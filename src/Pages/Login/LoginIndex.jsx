@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  Container, Col, Form,
+  Container, Col, Form, Row,
   FormGroup, Label, Input,
   Button,
 } from 'reactstrap';
 import '../Login/style.css';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 // import LoginTranslator from './Components/LoginTranslatorComponent';
 import { useState } from "react"
 import {withRouter} from "react-router-dom"
@@ -15,9 +15,9 @@ import RegistrationComponent from './Components/RegistrationComponent';
 
 const mapStateToProps = state => state
 const mapDispatchToProps = dispatch => ({
-  setUserToken: base64 => dispatch({
-    type:"SET_USERBASE64",
-    payload: base64
+  setUserToken: token => dispatch({
+    type:"SET_ACCESS_TOKEN",
+    payload: token
   }) 
 })
 
@@ -34,13 +34,14 @@ function Loginpage(props) {
   const [ saveCredentials, setSaveCredentials] = useState(false)
   const [ error, setError] = useState(undefined)
   
-  const login = async () => {  
-    const res = await fetch("http://localhost:3500/users/signin", {
+  const login = async (e) => {  
+    e.preventDefault()
+    const res = await fetch("http://localhost:7000/users/signin", {
       method:"POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: ({
+      body: JSON.stringify({
         username,
         password
       })
@@ -48,7 +49,6 @@ function Loginpage(props) {
     if (res.ok){
         const resJson = await res.json();
         console.log(resJson)
-        //props.setUserAuth(base64usernameAndPassword)
         if (saveCredentials)
           localStorage.setItem("access_token", resJson.access_token)
           
@@ -63,6 +63,27 @@ function Loginpage(props) {
         setPassword("")
       }
 }
+
+  const register = async(e) => {
+    e.Link(RegistrationComponent)
+    const res = await fetch("http://localhost:7000/users/registration", {
+    })
+    if (res.ok){
+      const resJson = await res.json();
+      console.log(resJson)
+      if(saveCredentials)
+        localStorage.setItem("access_token", resJson.access_token)
+
+        props.setUserToken(resJson.access_token)
+
+        props.history.push("/signin")
+    }
+    else {
+      setError("please enter valid username and password")
+      setUsername("")
+      setPassword("")
+    }
+  }
     return (
       <Container className="login-container">
         <h2 style={{marginTop: "5px"}}>Sign In</h2>
@@ -72,8 +93,7 @@ function Loginpage(props) {
             <FormGroup>
               <Label>Email</Label>
               <Input
-                type="name"
-                name="username"
+                type="username"
                 value={username}
                 placeholder="MyUserName"
                 onChange={e => setUsername(e.target.value)}
@@ -85,26 +105,32 @@ function Loginpage(props) {
               <Label for="examplePassword">Password</Label>
               <Input
                 type="password"
-                name="password"
                 value={password}
                 placeholder="********"
                 onChange={e => setPassword(e.target.value)}
               />
             </FormGroup>
+
+            <Row>
+            <span>Save Credentials?</span>
             
+            <Col>
+            <input type="checkbox" 
+            value={saveCredentials} 
+            onChange={e => setSaveCredentials(!saveCredentials)}/>
+            </Col>
+            </Row>
+
           </Col>
-          <Button className="login-btns">
-            <Link to='/login' onClick={login} value="login">Sign In</Link>
+          <Button className="login-btns" value="login" onClick={login} > 
+          Sign In
           </Button>
 
-          <Button className="login-btns" value="registration">
-            <Link to="/register" />Sign Up
+          <Button className="login-btns" value="Registration" onClick={register}>
+            Sign Up
           </Button>
-
-          <Button className="login-btns"><Link to="/profile" />Already Logged in?</Button>
           
-
-          
+          {error && <h2>{error}</h2>}
         </Form>
       </Container>
     );
@@ -112,4 +138,4 @@ function Loginpage(props) {
     
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loginpage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Loginpage));

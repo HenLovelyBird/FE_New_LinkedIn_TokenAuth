@@ -1,5 +1,5 @@
 import React from "react";
-import { Jumbotron, Container, Col, Row, Button } from "reactstrap";
+import { Jumbotron, Container, Col, Row } from "reactstrap";
 import "../Profile/style.css";
 import ProfileInfo from "./Components/ProfileInfo";
 import GETProfile from '../../APIs/Profile/getProfile.js'
