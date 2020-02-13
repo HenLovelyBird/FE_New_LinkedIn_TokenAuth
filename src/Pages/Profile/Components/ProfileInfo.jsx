@@ -4,13 +4,14 @@ import "../../Profile/style.css";
 
 class ProfileInfo extends Component {
   render() {
+    const prof = this.props.profile
     return (
       <Container id="profcontainer" fluid>
-        <Col><Row>{this.props.profile.firstname}</Row></Col>
-        <Row>{this.props.profile.surname}</Row>
-        <Row>{this.props.profile.title}</Row>
-        <Row>{this.props.profile.area}</Row>
-        <Row>{this.props.profile.bio}</Row>
+        <Col><Row>{prof.firstname}</Row></Col>
+        <Row>{prof.surname}</Row>
+        <Row>{prof.title}</Row>
+        <Row>{prof.area}</Row>
+        <Row>{prof.bio}</Row>
       </Container>
     );
   }

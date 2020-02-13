@@ -4,7 +4,6 @@ import "../Profile/style.css";
 import ProfileInfo from "./Components/ProfileInfo";
 import GETProfile from '../../APIs/Profile/getProfile.js'
 
-
 class Profile extends React.Component {
   state = {
     profile: {}
@@ -17,9 +16,10 @@ class Profile extends React.Component {
     })
     console.log(response)
   }
+
   render() {
     
-    const greeting = `Hello, ${this.state.profile.firstname}!`
+    const greeting = `Hello, ${this.state.profile.username}!`
 
     return (<>
       <Jumbotron fluid id="bg-cover">
