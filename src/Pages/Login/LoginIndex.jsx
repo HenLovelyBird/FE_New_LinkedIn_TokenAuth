@@ -33,7 +33,7 @@ function Loginpage(props) {
   const [ password, setPassword] = useState("")
   const [ saveCredentials, setSaveCredentials] = useState(false)
   const [ error, setError] = useState(undefined)
-
+  
   const login = async () => {  
     const res = await fetch("http://localhost:3500/users/signin", {
       method:"POST",
@@ -63,7 +63,6 @@ function Loginpage(props) {
         setPassword("")
       }
 }
-  
     return (
       <Container className="login-container">
         <h2 style={{marginTop: "5px"}}>Sign In</h2>
@@ -94,15 +93,22 @@ function Loginpage(props) {
             </FormGroup>
             
           </Col>
-          <Button id="submit-btn">
-            <Link to='/profile/:id' onClick={login} value="login">Submit</Link>
+          <Button className="login-btns">
+            <Link to='/login' onClick={login} value="login">Sign In</Link>
           </Button>
 
-          <Col><Button id="reg-btn" onclick={RegistrationComponent} value="registration">Sign Up</Button></Col>
+          <Col>
+          <Button className="login-btns"><Link to="/profile" />Already Logged in?</Button>
+          </Col>
+
+          <Col><Button className="login-btns" value="registration">
+            <Link to="/register" />Sign Up
+            </Button></Col>
         </Form>
       </Container>
     );
-  }
 
+    
+  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Loginpage);
