@@ -97,13 +97,14 @@ function Loginpage(props) {
             <Link to='/login' onClick={login} value="login">Sign In</Link>
           </Button>
 
-          <Col>
-          <Button className="login-btns"><Link to="/profile" />Already Logged in?</Button>
-          </Col>
-
-          <Col><Button className="login-btns" value="registration">
+          <Button className="login-btns" value="registration">
             <Link to="/register" />Sign Up
-            </Button></Col>
+          </Button>
+
+          <Button className="login-btns"><Link to="/profile" />Already Logged in?</Button>
+          
+
+          
         </Form>
       </Container>
     );
