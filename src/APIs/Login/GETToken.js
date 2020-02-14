@@ -1,5 +1,4 @@
-const URL = "http://localhost:7000/user/refresh"
-const Token = localStorage.getItem("access_token")
+const URL = "http://localhost:7000/users/refresh"
 const headers = new Headers ({
     "Authorization": "Bearer " + access_token
 })
@@ -7,6 +6,7 @@ const headers = new Headers ({
 
 componentDidMount = async () => {
      //getting the access_token from  the local storage
+    const Token = localStorage.getItem("access_token")
     if (Token) { //was the user already signed in?
         const response = await fetch(URL, { //is the token still valid?
             headers,
