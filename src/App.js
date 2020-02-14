@@ -1,29 +1,51 @@
 import React from 'react';
 import { Container } from 'reactstrap'
-// import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import './App.css';
 import LoginIndex from './Pages/Login/LoginIndex.jsx'
-// import Profile from './Pages/Profile/ProfileIndex'
-// import Registrationomponent from "./Pages/Registration/RegistrationIndex"
-// import PrivateRoute from "./PrivateRoute"
-import { connect } from "react-redux"
-
-const mapStateToProps = state => state
-const mapDispatchToProps = dispatch => ({
-    setUserToken: base64 => dispatch({
-        type: "SET_USERBASE64",
-        payload: base64
-    })
-})
-
+import GETProfile from './APIs/Profile/getProfile'
 
 function App() {
+
+  componentDidMount = async (e) => {
+    const Token = localStorage.getItem("access_token")
+    if (Token) { 
+        const response = await fetch("http://localhost:7000/users/refresh", { 
+            headers: {
+             "Authorization": "Bearer " + Token
+            },
+            method: "POST"
+        })
+   
+        if (response.ok){ 
+            const userJson = await response.json();
+            this.props.setUserToken(userJson.access_token)
+            localStorage.setItem("access_token", userJson.access_token)
+            console.log("token was ok, refreshed")
+        }
+        else{ 
+            delete localStorage["access_token"]
+            console.log("token was expired, removed")
+        }
+    }
+   }
+
+   componentDidMount = async () => {
+    let response = await GETProfile();
+    this.setState({
+      profile: response
+    })
+    console.log(response)
+  } 
+   
   return (
     <Container>
       <h1> Welcome! Ready to login or register!</h1>
       <LoginIndex />
+      <RegistrationComponent />
     </Container>
   );
+
+  
 }          
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App;

@@ -15,7 +15,7 @@ import RegistrationComponent from './Pages/Login/Components/RegistrationComponen
 import LoginIndex from './Pages/Login/LoginIndex';
 
 
-ReactDOM.render(
+  ReactDOM.render(
     <Provider store={configureStore()}>
         <Router>
             <Navigation />
@@ -30,6 +30,7 @@ ReactDOM.render(
             </Switch>
         </Router>
     </Provider>, document.getElementById('root'));
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -2,13 +2,12 @@ import React from 'react';
 import {
   Container, Col, Form, Row,
   FormGroup, Label, Input,
-  Button,
+  Button, 
 } from 'reactstrap';
 import '../Login/style.css';
-// import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 // import LoginTranslator from './Components/LoginTranslatorComponent';
 import { useState } from "react"
-import {withRouter} from "react-router-dom"
 import {connect} from "react-redux"
 import RegistrationComponent from './Components/RegistrationComponent';
 // import authCheckLogin from '../../APIs/Login/authCheckLogin' i have to be able to write it as cDM in here to import it
@@ -65,7 +64,6 @@ function Loginpage(props) {
 }
 
   const register = async(e) => {
-    e.Link(RegistrationComponent)
     const res = await fetch("http://localhost:7000/users/registration", {
     })
     if (res.ok){
@@ -126,7 +124,9 @@ function Loginpage(props) {
           Sign In
           </Button>
 
+          
           <Button className="login-btns" value="Registration" onClick={register}>
+          <Link to={RegistrationComponent} />
             Sign Up
           </Button>
           
